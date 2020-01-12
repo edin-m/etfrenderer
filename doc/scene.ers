@@ -1,0 +1,191 @@
+<project>
+	<sceneinfo>
+		<dimensions width="500" height="500" />
+		<output filepath="/home/edin/Pictures" filename="slika" filetype="jpg" />
+		<backcolor r="0" g="0" b="0" a="255" />
+		<ambience r="50" g="50" b="50" />
+	</sceneinfo>
+	<cameras>
+                <camera id="1" name="camera1" type="perspective">
+                        <pos x="150" y="70" z="250" />
+			<dir x="0" y="0" z="-1" />
+                        <distance>700</distance>
+			<up x="0" y="1" z="0" />
+                        <lookat x="0" y="-100" z="0" />
+
+                        <!-- referenciranje na lens shader -->
+                        <shader id="18" />
+                </camera>
+                <!--<camera id="2" name="ortho1" type="ortho">
+                        <pos x="0" y="0" z="10" />
+                        <dir x="0" y="0" z="-1" />
+                </camera>-->
+	</cameras>
+        <shaders>
+                <shader id="5" shading="image">
+                        <image location="../doc/texture.jpg" />
+                </shader>
+                <shader id="4" shading="image">
+                        <image location="../doc/earth.jpg" />
+                </shader>
+                <shader id="2" shading="lambert">
+                    <diffuse>
+                        <color rgb="white" />
+                    </diffuse>
+                </shader>
+                <shader id="10" shading="lambert">
+                    <diffuse>
+                        <color rgb="blue" />
+                    </diffuse>
+                    <reflection factor="0.5">
+                        <color r="1.0" g="1.0" b="1.0" />
+                    </reflection>
+                </shader>
+                <shader id="1" shading="phong">
+                        <diffuse>
+                            <color r="1.0" g="1.0" b="0.0" />
+                        </diffuse>
+                        <specular decay="20">
+                            <color r="0.7" g="0.7" b="0.7" />
+                        </specular>
+                        <reflection factor="0.5">
+                            <color r="1.0" g="1.0" b="1.0" />
+                        </reflection>
+                </shader>
+                <shader id="3" shading="phong">
+                        <specular decay="20">
+                            <color r="0.0" g="1.0" b="0.0" />
+                        </specular>
+                        <diffuse shaderid="5">
+                            <color r="1.0" g="0.1" b="0.2" />
+                        </diffuse>
+                </shader>
+
+                <!-- primjer lens shadera tacnije thinlensshadera -->
+                <shader id="8" shading="lens" type="thinlens">
+                    <focal-length>800</focal-length>
+                    <lens-radius>1.0</lens-radius>
+                </shader>
+
+                <!-- primjer checkerboard 2d texture shadera -->
+                <shader id="9" shading="texture" type="checker2d">
+                    <size>10.0</size>
+                    <color1 rgb="black" />
+                    <color2 rgb="white" />
+                </shader>
+
+        </shaders>
+        <materials>
+            <material id="1" name="SceneMat1">
+            </material>
+        </materials>
+	<lights>
+		<light id="1" name="light0" type="point" color="#888888">
+                        <pos x="140" y="50" z="150" />
+		</light>
+                <light id="2" name="light1" type="point" color="#444444">
+                        <pos x="-130" y="170" z="100" />
+		</light>
+                <!--<light id="2" name="light1" type="point" color="#00ff00">
+			<pos x="130" y="250" z="-40" />
+		</light>
+		<light id="3" name="light2" type="point" color="#0000ff">
+			<pos x="270" y="250" z="-40" />
+		</light>-->
+	</lights>
+	<objects>
+		<!-- usmjerenje barem kod planea je CCW -->
+                <object id="1" name="plane_back" type="plane" color="#552211">
+                        <point1 x="150" y="150" z="-150" />
+                        <point2 x="-150" y="150" z="-150" />
+                        <point3 x="-150" y="-150" z="-150" />
+                        <point4 x="150" y="-150" z="-150" />
+                        <shader id="2" />
+		</object>
+                <object id="2" name="plane_left" type="plane" color="#225511">
+                        <point1 x="-150" y="150" z="-150" />
+                        <point2 x="-150" y="150" z="100" />
+                        <point3 x="-150" y="-150" z="100" />
+                        <point4 x="-150" y="-150" z="-150" />
+                        <shader id="2" />
+                </object>
+                <object id="4" name="plane_bottom" type="plane" color="#115522">
+                        <point1 x="150" y="-150" z="-150" />
+                        <point2 x="-150" y="-150" z="-150" />
+                        <point3 x="-150" y="-150" z="100" />
+                        <point4 x="150" y="-150" z="100" />
+                        <shader id="2" />
+                </object>
+                <object id="5" name="plane_right" type="plane" color="#225511">
+                        <point1 x="150" y="150" z="100" />
+                        <point2 x="150" y="150" z="-150" />
+                        <point3 x="150" y="-150" z="-150" />
+                        <point4 x="150" y="-150" z="100" />
+			<shader id="2" />
+                </object>
+                <object id="111" name="sphere_1" type="sphere" radius="35" color="#ffff00">
+                        <pos x="50" y="-100" z="-50" />
+                        <shader id="1" />
+                </object>
+                <object id="111" name="sphere_1" type="sphere" radius="35" color="#ffff00">
+                        <pos x="-50" y="-100" z="0" />
+                        <shader id="10" />
+                </object>
+
+                <!--
+		<object id="2" name="triangle" type="triangle" color="#0000ff">
+			<point1 x="0" y="0" z="-200" />
+			<point2 x="50" y="0" z="-200" />
+			<point3 x="50" y="50" z="-200" />
+			<shader id="2" />
+                </object>-->
+		
+                <!--<object id="1" name="trimesh1" type="trimesh" external="../doc/object.emd">
+                        <shader id="3" />
+                        <bbox use="yes" />
+                        <mappings>
+                            <mapping id="1" type="uv" />
+                            <mapping id="2" type="spherical" />
+                        </mappings>
+                        <attributes>
+                            <attribute shaderid="3" name="mapping" value="spherical" />
+                        </attributes>
+                </object>
+
+
+                <object id="6" name="trimesh2" type="trimesh" external="../doc/object.emd">
+                        <shader id="3" />
+                        <bbox use="yes" />
+                </object>
+                -->
+
+                <object id="5" name="plane_top" type="plane" color="#5b5555">
+                        <point1 x="-150" y="150" z="-150" />
+                        <point2 x="150" y="150" z="-150" />
+                        <point3 x="150" y="150" z="100" />
+                        <point4 x="-150" y="150" z="100" />
+                </object>
+		
+		
+		<!--
+		
+		<object id="1" name="sphere_1" type="sphere" radius="100.0" color="#ffffff">
+			<pos x="200" y="200" z="-200" />
+			<material id="1" />
+		</object>
+		<object id="2" name="triangle" type="triangle" color="#ff0000">
+			<point1 x="-50" y="50" z="-200" />
+			<point2 x="50" y="50" z="-200" />
+			<point3 x="50" y="-50" z="-200" />
+		</object>
+		<object id="3" name="polymesh_1" type="mesh">
+			<external filename="polymesh_1" type="obj" />
+		</object>
+		<object id="4" name="sphere_2" type="sphere" radius="25.5" color="#0000ff">
+			<pos x="70" y="200" z="-50" />
+		</object>
+		<object id="5" name="sphere_3" type="sphere" radius="35.5" color="#ff0000">
+			<pos x="300" y="40" z="-110" />
+		</object>-->
+	</objects>
+</project>

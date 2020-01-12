@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Alias Wavefront OBJ/MTL ASCII" version="1.00" section="Sources" extensions="*.obj;*.mtl" mimetype="application/x-tgif?" author="egon.rath@gmail.com" license="LGPL">
+    <general>
+        <comments>
+            <comment name="singleLine" start="#"/>
+        </comments>
+        <keywords casesensitive="1"/>
+    </general>
+    <highlighting>
+        <list name="keywords">
+			<item>faces</item>
+			<item>normals</item>
+			<item>texels</item>
+			<item>vertices</item>
+			<item>header-start</item>
+			<item>face_format</item>
+			<item>vvt</item><item>vvn</item><item>vvtvn</item>
+                        <item>start_index</item>
+                        <item>absolute_center</item>
+                        <item>coordinates</item>
+                        <item>header-end</item>
+            <item>v</item>
+            <item>vn</item>
+            <item>vt</item>
+            <item>vp</item>
+            <item>sp</item>
+            <item>f</item>
+            <item>g</item>
+            <item>mg</item>
+            <item>o</item>
+            <item>s</item>
+            <item>p</item>
+            <item>l</item>
+            <item>cstype</item>
+            <item>bmatrix</item>
+            <item>bezier</item>
+            <item>bspline</item>
+            <item>cardinal</item>
+            <item>taylor</item>
+            <item>deg</item>
+            <item>bmat</item>
+            <item>step</item>
+            <item>curv</item>
+            <item>curv2</item>
+            <item>surf</item>
+            <item>end</item>
+            <item>parm</item>
+            <item>trim</item>
+            <item>hole</item>
+            <item>scrv</item>
+            <item>stech</item>
+            <item>con</item>
+            <item>bevel</item>
+            <item>c_interp</item>
+            <item>d_interp</item>
+            <item>lod</item>
+            <item>maplib</item>
+            <item>usemap</item>
+            <item>shadow_obj</item>
+            <item>trace_obj</item>
+            <item>ctech</item>
+            <item>bsp</item>
+            <item>bzp</item>
+            <item>cdc</item>
+            <item>cdp</item>
+            <item>res</item>
+
+            <item>mtllib</item>
+            <item>newmtl</item>
+            <item>usemtl</item>
+            <item>Ka</item>
+            <item>Kd</item>
+            <item>Ks</item>
+            <item>Ns</item>
+            <item>Ni</item>
+            <item>d</item>
+            <item>Tr</item>
+            <item>illum</item>
+            <item>map_Ka</item>
+            <item>map_Kd</item>
+            <item>map_Ks</item>
+            <item>map_d</item>
+            <item>map_bump</item>
+            <item>bump</item>
+        </list>
+        
+        <contexts>
+            <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text">
+                <keyword attribute="Keyword" String="keywords" context="#stay"/>
+                <DetectChar char="#" context="Comments"/>
+                <Float context="Numbers"/>
+                <Int context="Numbers"/>
+                <HlCHex context="Numbers"/>
+                <HlCOct context="Numbers"/>
+                <DetectChar attribute="String" context="String" char="&quot;"/>
+            </context>
+
+            <context attribute="Keywords" lineEndContext="#pop" name="Keywords">
+            </context>
+
+            <context attribute="Comments" lineEndContext="#pop" name="Comments">
+            </context>
+
+            <context attribute="Numbers" lineEndContext="#pop" name="Numbers">
+                <AnyChar String="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ/" context="#pop"/>
+                <DetectChar char="#" context="Comments"/>
+            </context>
+
+            <context attribute="String" lineEndContext="#stay" name="String">
+                <DetectChar attribute="String" context="#pop" char="&quot;"/>
+            </context>
+        </contexts>
+        
+        <itemDatas>
+            <itemData name="Normal Text" defStyleNum="dsNormal"/>
+            <itemData name="Numbers" defStyleNum="dsFloat"/>
+            <itemData name="Keyword" defStyleNum="dsKeyword"/>
+            <itemData name="Comments" defStyleNum="dsComment"/>
+            <itemData name="String" defStyleNum="dsString"/>
+        </itemDatas>
+    </highlighting>
+</language>
